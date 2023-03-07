@@ -12,6 +12,7 @@ import ListNotes from "../components/ListNotes.js"
 const Notes =()=>{ 
 
     const ruta = Params()[1]
+    let load = true
     let element
     let element2
 
@@ -30,7 +31,7 @@ const Notes =()=>{
 
         const loadList = async ()=>{
             const data = await getData( srcApi( `get/notes/1?token=${ localStorage.getItem( 'token' ) }` ) )
-            document.getElementById( 'main' ).removeChild( element2 )
+            if( load ) { document.getElementById( 'main' ).removeChild( element2 ); load = false }
             ListNotes( 'normal', data )
             
         }
@@ -60,7 +61,7 @@ const Notes =()=>{
 
         const loadList = ()=>{
             const data = JSON.parse( localStorage.getItem( 'listNoteOffline' ) )
-            document.getElementById( 'main' ).removeChild( element2 )
+            if( load ) { document.getElementById( 'main' ).removeChild( element2 ); load = false }
 
             ListNotes( ruta, data )
         }
@@ -88,7 +89,7 @@ const Notes =()=>{
 
         const loadList = async ()=>{
             const data = await getData( srcApi( `get/notes/2?token=${ localStorage.getItem( 'token' ) }` ) )
-            document.getElementById( 'main' ).removeChild( element2 )
+            if( load ) { document.getElementById( 'main' ).removeChild( element2 ); load = false }
 
             ListNotes( ruta, data )
         }
@@ -119,7 +120,7 @@ const Notes =()=>{
 
         const loadList = async ()=>{
             const data = await getData( srcApi( `get/shareuser?token=${ localStorage.getItem( 'token' ) }` ) )
-            document.getElementById( 'main' ).removeChild( element2 )
+            if( load ) { document.getElementById( 'main' ).removeChild( element2 ); load = false }
 
             ListNotes( ruta, data )
         }
