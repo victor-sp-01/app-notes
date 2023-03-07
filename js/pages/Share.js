@@ -1,3 +1,5 @@
+import styleFormNote from "../styles/styleFormNote.js"
+
 import { Params } from "../helpers/Params.js"
 import { getData } from "../api/apiData.js"
 import srcApi from "../helpers/srcApi.js"
@@ -8,7 +10,8 @@ const Share =async()=>{
     const [ data ] = await getData( srcApi( `get/share/${ params[1] }` ) )
 
     if( !data ) return PageNotFound( 'Nota no econtrada' )
-
+    
+    document.getElementById( 'styles' ).innerHTML += styleFormNote()
     document.getElementById( 'main' ).innerHTML = `
         <form class="form__MM6GJ" >
             <input type="text" class="input__7sjAy" name="title" placeholder="titulo" spellcheck="false" >
